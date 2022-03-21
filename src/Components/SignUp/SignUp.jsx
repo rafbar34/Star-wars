@@ -1,32 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { useUserAuth } from "../../UserAuthContext/UserAuthContext";
 
-export function LoginPage() {
+export function SignUp() {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
 
-  const [loginEmail, setLoginEmail] = useState("");
-
-  const [loginPassword, setloginPassword] = useState("");
   const navigate = useNavigate();
 
   const { signUp } = useUserAuth();
-  const { logIn } = useUserAuth();
 
   const register = async () => {
     try {
       const user = await signUp(registerEmail, registerPassword);
 
-      navigate("/");
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  const login = async () => {
-    try {
-      const user = logIn(loginEmail, loginPassword);
       navigate("/");
     } catch (error) {
       console.log(error.message);
@@ -39,11 +27,12 @@ export function LoginPage() {
         <div className="bg-gray-600 bg-opacity-30 rounded-md h-3/4 w-1/2 border-2 border-white-900 flex flex-col  justify-around  items-center">
           <div className="flex flex-col  justify-around  items-center h-1/2 w-1/2 ">
             <label>
+              <h1 className="text-white">Register</h1>
+
               <input
-                className="w-full  rounded-lg"
                 name="email"
                 onChange={(event) => {
-                  setLoginEmail(event.target.value);
+                  setRegisterEmail(event.target.value);
                 }}
                 type="email"
                 placeholder="Email"
@@ -51,31 +40,27 @@ export function LoginPage() {
             </label>
             <label>
               <input
-                className="w-full  rounded-lg "
-                onChange={(event) => {
-                  setloginPassword(event.target.value);
-                }}
                 name="password"
+                onChange={(event) => {
+                  setRegisterPassword(event.target.value);
+                }}
                 type="password"
-                placeholder="Password"
+                placeholder="password"
               />
             </label>
             <button
-              onClick={login}
-              onChange={(event) => {
-                setLoginEmail(event.target.value);
-              }}
               className="w-1/4  text-white border-2 border-white-900 rounded-lg"
+              onClick={register}
             >
-              Login
+              Sign Up
             </button>
             <button
               onClick={() => {
-                navigate("/SignUp");
+                navigate("/login");
               }}
               className="w-1/4  text-white border-2 border-white-900 rounded-lg"
             >
-              Sign Up
+              Go to Login
             </button>
           </div>
         </div>

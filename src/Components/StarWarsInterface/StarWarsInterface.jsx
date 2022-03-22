@@ -50,7 +50,7 @@ export function StarWarsInfo() {
   return (
     
     <div className="layout h-full  bg-gray-600 flex flex-col justify-start  items-center  bg-contain bg-[url('https://i.pinimg.com/564x/99/2b/6a/992b6a27c718d09791fd28c1607cab40.jpg')]">
-      <div className="   flex ">
+      <div className=" w-full  flex ">
         <button
           onClick={logout}
           className="logoutBtn bg-gray-300 h-10 w-24 m-2 rounded-lg"

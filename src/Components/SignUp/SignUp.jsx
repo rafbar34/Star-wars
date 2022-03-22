@@ -6,7 +6,9 @@ import {createUserWithEmailAndPassword} from "firebase/auth";
 
 
 export function SignUp() {
+ 
   const [registerEmail, setRegisterEmail] = useState("");
+ 
   const [registerPassword, setRegisterPassword] = useState("");
 
   const navigate = useNavigate();

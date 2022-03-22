@@ -4,13 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import { UserAuthContextProvider } from "./UserAuthContext/UserAuthContext";
 import { SignUp } from "./Components/SignUp/SignUp";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from 'recoil';
+import {RecoilRoot,} from 'recoil';
 function App() {
   return (
     <div className="App">

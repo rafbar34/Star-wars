@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 export function SignUp() {
+ 
   const [registerEmail, setRegisterEmail] = useState("");
+ 
   const [registerPassword, setRegisterPassword] = useState("");
 
   const navigate = useNavigate();

@@ -15,7 +15,7 @@ export function Character({ apiLinkCharacter }) {
   }, [apiLinkCharacter]);
 
   return (
-    <div className="bg-gray-800 bg-opacity-60 rounded-xl p-2 ">
+    <div className="character bg-gray-800 bg-opacity-60 rounded-xl p-2 ">
       {[characters].map(({ name, mass, height, eye_color }) => {
         return (
           <div className="text-center">

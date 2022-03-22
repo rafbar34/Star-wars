@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase";
 
-import { useUserAuth } from "../../UserAuthContext/UserAuthContext";
+import {createUserWithEmailAndPassword} from "firebase/auth";
+
 
 export function SignUp() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -9,7 +11,9 @@ export function SignUp() {
 
   const navigate = useNavigate();
 
-  const { signUp } = useUserAuth();
+  function signUp(email, password) {
+    return createUserWithEmailAndPassword(auth, email, password);
+  }
 
   const register = async () => {
     try {
@@ -22,10 +26,10 @@ export function SignUp() {
   };
 
   return (
-    <main className="h-screen    bg-cover bg-no-repeat   bg-[url('https://images.unsplash.com/photo-1525352265139-caa4490ea6d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80')]">
-      <section className="h-full flex justify-center  items-center">
-        <div className="bg-gray-600 bg-opacity-30 rounded-md h-3/4 w-1/2 border-2 border-white-900 flex flex-col  justify-around  items-center">
-          <div className="flex flex-col  justify-around  items-center h-1/2 w-1/2 ">
+    <div className="container-signUp h-screen    bg-cover bg-no-repeat   bg-[url('https://images.unsplash.com/photo-1525352265139-caa4490ea6d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80')]">
+      <div className="box-signUp h-full flex justify-center  items-center">
+        <div className="window-signUp bg-gray-600 bg-opacity-30 rounded-md h-3/4 w-1/2 border-2 border-white-900 flex flex-col  justify-around  items-center">
+          <div className="inputs-signUp flex flex-col  justify-around  items-center h-1/2 w-1/2 ">
             <label>
               <h1 className="text-white">Register</h1>
 
@@ -49,7 +53,7 @@ export function SignUp() {
               />
             </label>
             <button
-              className="w-1/4  text-white border-2 border-white-900 rounded-lg"
+              className="registerBtn w-1/4  text-white border-2 border-white-900 rounded-lg"
               onClick={register}
             >
               Sign Up
@@ -58,13 +62,13 @@ export function SignUp() {
               onClick={() => {
                 navigate("/login");
               }}
-              className="w-1/4  text-white border-2 border-white-900 rounded-lg"
+              className="loginbackBtn w-1/4  text-white border-2 border-white-900 rounded-lg"
             >
-              Go to Login
+              Back to Login
             </button>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }

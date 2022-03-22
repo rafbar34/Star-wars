@@ -4,9 +4,17 @@ import { Routes, Route, Link } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import { UserAuthContextProvider } from "./UserAuthContext/UserAuthContext";
 import { SignUp } from "./Components/SignUp/SignUp";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 function App() {
   return (
     <div className="App">
+      <RecoilRoot>
       <UserAuthContextProvider>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
@@ -20,7 +28,7 @@ function App() {
             }
           />
         </Routes>
-      </UserAuthContextProvider>
+      </UserAuthContextProvider></RecoilRoot>
     </div>
   );
 }

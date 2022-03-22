@@ -3,22 +3,25 @@ import axios from "axios";
 import { FilmCard } from "../FilmCard/FilmCard";
 import { auth } from "../../firebase";
 import { signOut, onAuthStateChanged } from "firebase/auth";
-import { useUserAuth } from "../../UserAuthContext/UserAuthContext";
+import { useRecoilState } from "recoil";
+import { infoAtomState } from "../../atoms/InfoUserAtom";
 export function StarWarsInfo() {
   const [filmsLoading, setFilmsLoading] = useState(false);
   const [films, setFilms] = useState([]);
 
-  const [user, setUser] = useState({});
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
-
-  const { users } = useUserAuth();
-  console.log(users);
+  const [user, setUser] = useRecoilState(infoAtomState);
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      console.log(currentUser);
+    });
+  }, [setUser]);
   const urlFilms = "https://swapi.dev/api/films/";
 
   const logout = async () => {
     await signOut(auth);
+    //wystepuję błąd z powodu biblioteki recoil. Używając useState działa.
+    //TypeError: Cannot assign to read only property 'currentUser' of object '#<AuthImpl>'
   };
 
   useEffect(() => {
@@ -37,7 +40,7 @@ export function StarWarsInfo() {
       <div className="w-full flex">
         <button
           onClick={logout}
-          className="bg-gray-300 h-10 w-24 m-2 rounded-lg"
+          className="logoutBtn bg-gray-300 h-10 w-24 m-2 rounded-lg"
         >
           Log Out
         </button>
@@ -45,12 +48,12 @@ export function StarWarsInfo() {
       </div>
       <div className="  w-5/6  flex flex-col  justify-center  items-center   ">
         {!filmsLoading ? (
-          films.map(({ title, characters, planets, vehicles, episode_id }) => (
+          films.map(({ title, characters, planets, starships, episode_id }) => (
             <FilmCard
               key={episode_id}
               title={title}
               planets={planets}
-              vehicles={vehicles}
+              starships={starships}
               characters={characters}
             />
           ))

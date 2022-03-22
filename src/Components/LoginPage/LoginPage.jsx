@@ -11,17 +11,18 @@ export function LoginPage() {
   const [loginEmail, setLoginEmail] = useState("");
 
   const [loginPassword, setloginPassword] = useState("");
+  
   const navigate = useNavigate();
 
 
 
-  function logIn(email, password) {
+  function logInUser(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
   const login = async () => {
     try {
-      const {user} = logIn(loginEmail, loginPassword);
+      const {user} = logInUser(loginEmail, loginPassword);
       navigate("/");
     } catch (error) {
       console.log(error.message);
@@ -39,6 +40,7 @@ export function LoginPage() {
                 name="email"
                 onChange={(event) => {
                   setLoginEmail(event.target.value);
+                  
                 }}
                 type="email"
                 placeholder="Email"

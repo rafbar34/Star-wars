@@ -28,5 +28,9 @@ export function UserAuthContextProvider({ children }) {
 }
 
 export function useUserAuth() {
-  return useContext(userAuthContext);
+  const ctx=useContext(userAuthContext)
+  if(!ctx){
+    throw new Error("Component not wrapped in userAuthContext")
+  }
+  return ctx;
 }

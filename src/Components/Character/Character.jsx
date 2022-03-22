@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
+
 export function Character({ apiLinkCharacter }) {
   const [characters, setCharacters] = useState([]);
 
@@ -14,11 +15,13 @@ export function Character({ apiLinkCharacter }) {
     getDataCharacter();
   }, [apiLinkCharacter]);
 
+ 
+
   return (
     <div className="character bg-gray-800 bg-opacity-60 rounded-xl p-2 ">
-      {[characters].map(({ name, mass, height, eye_color }) => {
+      {[characters].map(({ name, mass, height, eye_color,url },index) => {
         return (
-          <div className="text-center">
+          <div className="text-center" key={url+index}>
             <p className="text-lg mb-3">Characters</p>
             <p>
               <b>Name</b> {name}

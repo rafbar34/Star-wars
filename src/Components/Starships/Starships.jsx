@@ -16,10 +16,10 @@ export function Starships({ apiLinkShips }) {
 
   return (
     <div className="bg-gray-800 bg-opacity-60 rounded-xl p-2 ">
-      {[starships].map(({ name, model, passengers }) => {
+      {[starships].map(({ name, model, passengers,url },index) => {
         return (
-          <div>
-            <p className="text-lg mb-3">starships</p>
+          <div key={url+index}>
+            <p className="text-lg mb-3" >Starships</p>
             <p>
               <b>Name</b> {name}
             </p>

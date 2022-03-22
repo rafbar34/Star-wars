@@ -15,9 +15,9 @@ export function Planets({ apiLinkPlanets }) {
 
   return (
     <div className="planets bg-gray-800 bg-opacity-60 rounded-xl p-2">
-      {[planets].map(({ name, diameter, population, terrain }) => {
+      {[planets].map(({ name, diameter, population, terrain,url },index) => {
         return (
-          <div className="text-center">
+          <div className="text-center" key={url+index}>
             <p className="text-lg mb-3">Planets</p>
             <p>
               <b>Name</b> {name}
